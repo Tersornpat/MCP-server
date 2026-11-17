@@ -69,7 +69,7 @@ before(async () => {
     DEFAULT_CALENDAR_NAME: 'MCP-project',
     TIMEZONE: 'Asia/Bangkok',
   });
-  const { default: app } = await import('../src/index');
+  const { default: app } = await import('../src/index.js');
   server = serve({ fetch: app.fetch, port: PORT });
   await waitFor(`${BASE}/healthz`);
 });

@@ -3,9 +3,9 @@
  * The app-specific password only ever lives in memory inside the DAV client.
  */
 import { DAVClient, type DAVCalendar, type DAVCalendarObject } from 'tsdav';
-import type { Config } from './config';
-import { buildEvent, patchEvent, readEvents, type EventPatch, type EventView, type NewEvent } from './ical';
-import { UserError } from './time';
+import type { Config } from './config.js';
+import { buildEvent, patchEvent, readEvents, type EventPatch, type EventView, type NewEvent } from './ical.js';
+import { UserError } from './time.js';
 
 export interface CalendarInfo {
   id: string;

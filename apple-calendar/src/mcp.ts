@@ -4,9 +4,9 @@
  */
 import { McpServer } from '@modelcontextprotocol/sdk/server/mcp.js';
 import { z } from 'zod';
-import { CalendarStore, MAX_EVENTS } from './caldav';
-import type { Config } from './config';
-import { parseIsoInput, UserError } from './time';
+import { CalendarStore, MAX_EVENTS } from './caldav.js';
+import type { Config } from './config.js';
+import { parseIsoInput, UserError } from './time.js';
 
 const WRITE_LIMIT_PER_MINUTE = 20;
 const CALL_LIMIT_PER_MINUTE = 60;

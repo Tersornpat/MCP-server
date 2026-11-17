@@ -4,9 +4,9 @@
  */
 import { WebStandardStreamableHTTPServerTransport } from '@modelcontextprotocol/sdk/server/webStandardStreamableHttp.js';
 import { Hono } from 'hono';
-import { configStatus, loadConfig } from './config';
-import { createMcpServer } from './mcp';
-import { MCP_PATH, mountOAuth, originOf, SCOPE, verifyAccessToken } from './oauth';
+import { configStatus, loadConfig } from './config.js';
+import { createMcpServer } from './mcp.js';
+import { MCP_PATH, mountOAuth, originOf, SCOPE, verifyAccessToken } from './oauth.js';
 
 const app = new Hono();
 
