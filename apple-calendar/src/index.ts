@@ -16,6 +16,42 @@ app.use('*', async (c, next) => {
   c.header('strict-transport-security', 'max-age=31536000');
 });
 
+// Request log for the OAuth and MCP endpoints: method, path and status only.
+// Failed registration and token calls also log the OAuth error body (an error
+// code and description, never a token) so connection problems can be diagnosed.
+const LOGGED_PATHS = new Set(['/register', '/authorize', '/token', MCP_PATH]);
+app.use('*', async (c, next) => {
+  const path = new URL(c.req.url).pathname;
+  const logged = LOGGED_PATHS.has(path) || path.startsWith('/.well-known/');
+  let registration: unknown;
+  if (logged && path === '/register' && c.req.method === 'POST') {
+    try {
+      const body = (await c.req.raw.clone().json()) as Record<string, unknown>;
+      registration = {
+        redirect_uris: body.redirect_uris,
+        grant_types: body.grant_types,
+        response_types: body.response_types,
+        token_endpoint_auth_method: body.token_endpoint_auth_method,
+        scope: body.scope,
+      };
+    } catch {
+      registration = 'unparseable body';
+    }
+  }
+  await next();
+  if (!logged) return;
+  const entry: Record<string, unknown> = { evt: 'http', method: c.req.method, path, status: c.res.status };
+  if (registration !== undefined) entry.registration = registration;
+  if (c.res.status >= 400 && (path === '/register' || path === '/token')) {
+    try {
+      entry.error = (await c.res.clone().text()).slice(0, 300);
+    } catch {
+      /* ignore */
+    }
+  }
+  console.log(JSON.stringify(entry));
+});
+
 mountOAuth(app, () => loadConfig());
 
 function unauthorized(req: Request, error?: string): Response {
