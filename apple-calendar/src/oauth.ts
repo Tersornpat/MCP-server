@@ -16,7 +16,7 @@ import { createHash, hkdfSync, randomUUID, timingSafeEqual } from 'node:crypto';
 import type { Context, Hono } from 'hono';
 import { cors } from 'hono/cors';
 import { EncryptJWT, jwtDecrypt, jwtVerify, SignJWT } from 'jose';
-import { authReady, type Config } from './config.js';
+import { authReady, type Config } from './config';
 
 export const SCOPE = 'calendar';
 export const MCP_PATH = '/mcp';

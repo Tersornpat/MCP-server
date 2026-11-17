@@ -19,7 +19,7 @@ import {
   tzOffsetMinutes,
   UserError,
   type ParsedInput,
-} from './time.js';
+} from './time';
 
 export const PRODID = '-//tersornpat//apple-calendar-mcp 1.0//EN';
 const MAX_OCCURRENCE_STEPS = 20000;

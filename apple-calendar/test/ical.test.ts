@@ -1,7 +1,7 @@
 import assert from 'node:assert/strict';
 import { test } from 'node:test';
-import { buildEvent, patchEvent, readEvents } from '../src/ical.js';
-import { formatInZone, hasFixedOffset, parseIsoInput, UserError } from '../src/time.js';
+import { buildEvent, patchEvent, readEvents } from '../src/ical';
+import { formatInZone, hasFixedOffset, parseIsoInput, UserError } from '../src/time';
 
 const tz = 'Asia/Bangkok';
 const p = (v: string, zone = tz) => parseIsoInput(v, zone, 'value');
