@@ -1,0 +1,29 @@
+{
+  "name": "apple-calendar-mcp",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Single-user remote MCP server that lets Claude manage an Apple (iCloud) Calendar over CalDAV",
+  "engines": {
+    "node": "22.x"
+  },
+  "scripts": {
+    "dev": "tsx watch test/dev-server.ts",
+    "typecheck": "tsc --noEmit",
+    "test": "tsx --test test/*.test.ts"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "1.32.2",
+    "hono": "4.13.19",
+    "ical.js": "2.2.1",
+    "jose": "6.2.17",
+    "tsdav": "2.5.1",
+    "zod": "4.6.7"
+  },
+  "devDependencies": {
+    "@hono/node-server": "2.1.8",
+    "@types/node": "22.20.5",
+    "tsx": "4.23.15",
+    "typescript": "5.9.3"
+  }
+}
